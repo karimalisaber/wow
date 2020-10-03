@@ -1,0 +1,61 @@
+<section class="d-flex justify-content-between mb-30">
+    <h2 class="title"> كل الفئات </h2>
+
+    <button (click)="addCategory()" class="btn add-btn">
+        <i class="fas fa-plus"></i>
+    </button>
+</section>
+
+<section class="wrapper row">
+    <div *ngFor="let cat of categories" class="col-md-3 ph-10">
+        <div  class="cat-item">
+            <div class="cat-wrapper">
+                <h4 class="title">
+                    {{cat.name}}
+                </h4>
+    
+                <div class="controles d-none">
+                    <button (click)="addCategory(cat.id)" class="btn btn-light">
+                        <i class="far fa-edit"></i>
+                    </button>
+                    
+                    <button (click)="deleteAlert(cat.id , 'mainCategory')" class="btn trash-btn btn-danger">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div>
+            </div>  
+        </div>
+    </div>
+</section>
+
+
+<section class="main-shadow p-20 mb-30">
+    <header class="d-flex justify-content-between mb-20">
+        <h2 class="title"> الشرائح المتحركة </h2>
+        
+        <div>
+            <button (click)="addMainSlider()" class="btn add-btn">
+                <i class="fas fa-plus"></i>
+            </button>
+        </div>
+    </header>
+
+    <div class="wrapper row">
+        <div *ngFor="let slider of sliders"  class="col-md-4 ph-10 mb-20">
+            <div class="slider-item d-flex">
+            <div class="slider-wrapper">
+                <div class="img-wrapper" [style.background]="'url('+ url + '/public/home_sliders/'+ slider.imgae +')'"></div>
+                <!-- <img class="main-img" src="assets/images/test.jpg" alt=""> -->
+                        
+                <div class="controles d-none">
+                    <button class="btn trash-btn btn-danger">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    </div>
+</section>

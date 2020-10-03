@@ -1,0 +1,28 @@
+app-sidebar{
+    width: 15.5vw;
+    transition: 1s all;
+    // width: 0 !important;
+    // position: fixed;
+    position: sticky;
+}
+
+.place-holder{
+    // width: 15.5vw;
+    transition: 1s all;
+
+}
+
+.main-content{
+    nav{
+        height: 70px;
+    }
+}
+
+
+.fa-bars{
+    font-size: 1rem;
+}
+
+.fa-user{
+    font-size: 1.1rem;
+}

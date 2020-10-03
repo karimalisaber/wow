@@ -1,1 +1,217 @@
-/* You can add global styles to this file, and also import other style files */
+@import '~@fortawesome/fontawesome-free/css/all.min.css';
+@import '~bootstrap/dist/css/bootstrap.min.css';
+@import "framework";
+@import "variables";
+// @import '~@angular\material\prebuilt-themes\pink-bluegrey.css';
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
+// google fonts
+@import 'https://fonts.googleapis.com/css?family=Inconsolata|Cantarell';
+
+
+// general
+// colors
+.main-background{
+    background-color: $mainColor;
+}
+
+.second-background{
+    background-color: $secondColor;
+}
+
+// helper
+
+.title{
+    color: $textColor;
+    font-weight: 700;
+    font-size: 1.5rem !important;
+}
+
+hr{
+    background-color: #fff;
+}
+
+.mat-expansion-panel-header-description, .mat-expansion-indicator::after{
+    color: #fff;
+}
+
+.mat-expansion-panel-body{
+    padding: 10px !important;
+    padding-top: 0 !important;
+    padding-bottom: 20px !important;
+}
+
+
+.light-shadow{
+    box-shadow: 0 0 35px 0 rgba(154,161,171,.15);
+}
+
+.main-shadow{
+    box-shadow: 0 1px 11px 0 rgba(0, 0, 0, 0.12);
+}
+
+.cat-item{
+    box-shadow: 0 1px 11px 0 rgba(0, 0, 0, 0.12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 95px;
+    border-top: 2px solid $mainColor;
+    border-radius: 10px;
+    margin-bottom: 20px;
+
+    &:hover{
+        background-color: $hoverColor;
+            
+        .cat-wrapper{
+            .controles{
+                display: flex !important;
+                justify-content: center;
+                align-items: center;
+
+                .trash-btn{
+                    margin: 0 7px;
+                }
+
+            }        
+        }
+    }
+
+    .cat-wrapper{
+        position: relative;   
+        .controles{
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+    }
+}
+
+
+
+
+.slider-item{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+  
+    &:hover{
+        
+        z-index: 10;
+        .slider-wrapper{
+            .controles{
+                background-color: $lightHoverColor ;
+                display: flex !important;
+                justify-content: center;
+                align-items: center;
+
+                .trash-btn{
+                    margin: 0 7px;
+                }
+
+            }        
+        }
+    }
+
+    .img-wrapper{
+        background-position: center;
+        width: 100%;
+        height: 150px;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    .slider-wrapper{
+        height: 150px;
+        width: 100%;
+        position: relative;   
+        .controles{
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+    }
+}
+
+
+
+
+// images 
+
+.main-img{
+    height: 100%;
+    max-height: 100%;
+    width: 100%;
+    max-width: 100%;
+}
+
+// buttons 
+
+.add-btn{
+    border-radius: 5px;
+    padding: 8px 11px;
+    background-color: $mainColor;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .fa-plus{
+        font-size: 1.2rem;
+        color: #fff;
+    }
+
+}
+
+
+.action{
+    justify-content: space-between;
+    // height: 0;
+    overflow: hidden;
+    transition: hight $mainTransition;
+    .btn{
+
+        background: transparent;
+        padding: .28rem 1.4rem;
+        font-size: .9rem;
+        
+        &.btn-primary{
+            color: #39afd1;
+            border-color: #39afd1;
+               
+            &:hover{
+                background-color: #39afd1 !important; 
+                color: #fff;
+            }
+        }
+
+        &:disabled{
+            background-color: #39afd1 !important; 
+            color: #fff;
+        }
+    
+        
+    
+        &.btn-danger{
+            color: #fa5c7c;
+            border-color: #fa5c7c; 
+    
+            &:hover{
+                background-color: #fa5c7c; 
+                color: #fff;
+            }
+        }
+        
+    }
+}
+
+// background 
+.warning-background{
+    background-color: $warningColor !important;
+}

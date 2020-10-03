@@ -1,0 +1,40 @@
+<div class="d-flex">
+    <app-sidebar [expandNav]="expandNav" [ngClass]="{'w-0': !expandNav}" ></app-sidebar>
+    <div [ngClass]="{'place-holder': expandNav}"></div>
+
+    <div class="main-content flex-grow-1 second-background">
+        <nav class="w-100 ">
+            <ul class="p-20 d-flex justify-content-between">
+                <li>
+                    <button matRipple class="btn" (click)="sidenavToggle()">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </li>
+
+                <li class="justify-self-end">
+                    <ul class="">
+                        <li>
+                            <a href="#" class="btn">
+                                English
+                            </a>
+                        </li>
+
+                        <li>
+                            <button mat-button [matMenuTriggerFor]="logout" class="btn">
+                                <i class="fas fa-user"></i>
+                            </button>
+                            <mat-menu #logout="matMenu">
+                                <button class="d-block text-center" mat-menu-item>logout</button>
+                            </mat-menu>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="ph-30">
+            <router-outlet></router-outlet>
+        </div>
+        
+    </div>
+</div>

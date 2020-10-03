@@ -1,0 +1,38 @@
+<form #userForm="ngForm" (ngSubmit)="takeAction(userForm.value)" >
+    <h3 class="title">
+        {{title}}
+    </h3>
+    <hr>
+
+    <div class="form-group">
+        <label class="main-label" for="name">Name <span class="text-danger">*</span> </label>
+        <input required name="name" class="form-control" id="name" placeholder="Name" 
+        [(ngModel)]="form.name"
+        >
+    </div>
+
+    <!-- <div class="form-group">
+        <label class="main-label" for="english-name">Name (english) <span class="text-danger">*</span> </label>
+        <input 
+            [(ngModel)]="form.engName"
+            required name="arabName" class="form-control" id="english-name" placeholder="english-name">
+    </div> -->
+
+
+    <div class="form-group">
+        <label class="main-label" for="thumbnail"> Image <span *ngIf="!itemId" class="text-danger">*</span> </label>
+        
+        <div class="custom-file mb-10">
+            <input (change)="imgUpload($event.target)"  ngModel  type="file" name="image" class="form-control custom-file-input" id="thumbnail" >
+            <label class="custom-file-label"  for="thumbnail">{{imgName}}</label>
+        </div>
+    </div>
+
+
+    <div style="width: 200px;" class="mv-20 action d-flex">
+        <button *ngIf="!isLoading" type="button"  class="rounded-0 btn btn-primary" [disabled] = "!userForm.valid || !imgExsist" (click)="takeAction(userForm.value)"> {{action}}</button>
+        <span *ngIf="isLoading" class="rounded-0 btn warning-background  btn-warning  loading"> loading...</span>
+
+        <button mat-dialog-close type="button" class="btn btn-danger rounded-0"> Cancel</button> 
+    </div>
+</form>

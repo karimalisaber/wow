@@ -1,0 +1,38 @@
+<mat-sidenav-container [ngClass]="{'w-0': !expandNav}">
+   <mat-sidenav mode="side" [(opened)]="expandNav" class="main-background">
+       <div class="logo">
+            <img class="img-fluid" src="assets/images/logo.png" alt="">
+       </div>
+       <hr>
+       <ul class="sidebar-content ph-20">
+            <li style="display: flex !important" class="control-item">
+        
+              <mat-expansion-panel class="w-100 d-inline-block">
+                  <mat-expansion-panel-header class="p-0" style="height: auto !important;"> 
+                      <a routerLink class="btn font-weight-bold">
+                        <i class="fas fa-home"></i>
+                        
+                        <span class="mh-10">
+                          الفئات
+                        </span>
+
+                      </a>
+                  </mat-expansion-panel-header>
+                  
+                  <ul *ngIf="categories">
+                    <li *ngFor="let cat of categories" class="sub-menu">
+                      <a routerLink="categories" routerLinkActive="active" class="d-flex btn w-100 align-items-center">
+                      <i class="fas fa-circle"></i>
+
+                      <span class="mh-10">{{cat.name}} </span>
+                    </a>
+                   </li>
+                  </ul>
+              </mat-expansion-panel>         
+           </li>
+       </ul>
+   </mat-sidenav>
+   
+   <mat-sidenav-content class="p-50" [ngClass]="{'toggle': !expandNav}">
+   </mat-sidenav-content>
+</mat-sidenav-container> 
