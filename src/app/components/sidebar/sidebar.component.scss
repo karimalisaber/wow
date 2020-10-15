@@ -1,4 +1,4 @@
-
+@import 'variables';
 mat-sidenav-container{
     min-height: 100vh;
     position: fixed;
@@ -27,6 +27,16 @@ mat-sidenav-container{
             .fa-circle{
                 font-size: .4rem;
             }
+
+        }
+
+        
+        a.active{
+            color: $warningColor !important;
+
+            i ,span{
+                color: $warningColor !important;
+            }
         }
     }
 
@@ -35,9 +45,7 @@ mat-sidenav-container{
     }
 }
 
-
 // general 
-
 mat-expansion-panel{
      background-color: transparent;
      color: #fff;

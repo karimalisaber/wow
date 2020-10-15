@@ -1,0 +1,210 @@
+<form #userForm="ngForm" (ngSubmit)="addProduct(userForm.value); userForm.reset()">
+    <mat-card>
+        <div class="filter-section">
+            <div class="row mb-50">
+                <div class="input-group  col-md-3">
+                    <label class="input-group" for="inputGroupSelect01">Name <span class="text-danger">*</span></label>
+
+                    <input 
+                         [ngClass]="{ 'is-invalid': name.invalid && name.touched, 'is-valid': !name.invalid && name.touched}"
+                            #name="ngModel"
+                         required name="name" ngModel  class="form-control" id="name" placeholder="Name">
+                </div>
+
+
+                <div class="input-group col-md-3">
+                    <label class="input-group" for="inputGroupSelect01">Categories <span
+                            class="text-danger">*</span></label>
+
+                    <mat-select #catSelect placeholder='select Category'
+                        (selectionChange)="changeCategory(catSelect.value)"
+                        >
+
+                        <!-- <div class="p-10 w-100">
+                            <input type="search" class="w-100 input-search">
+                        </div>
+                       -->
+                        <mat-option [value]="cat.id" *ngFor="let cat of categories">
+                            {{cat.name}}
+                        </mat-option>
+                    </mat-select>
+                </div>
+
+                <div class="input-group  col-md-3">
+                    <label class="input-group" for="inputGroupSelect01">Sub Category <span
+                            class="text-danger">*</span></label>
+
+                    <mat-select #subCatSelect (selectionChange)="changeSubCategory(subCatSelect.value)"
+                        placeholder='select Sub Cat'
+                        ngModel required name="sub_category_id"
+                        >
+
+                        <!-- <div class="p-10 w-100">
+                            <input type="text" class="w-100 input-search">
+                        </div> -->
+
+                        <mat-option *ngFor="let subCat of subCategories" [value]="subCat.id">
+                            {{subCat.name}}
+                        </mat-option>
+                    </mat-select>
+                </div>
+
+                <div class="input-group  col-md-3">
+                    <label class="input-group" for="inputGroupSelect01">Sub Category Of Sub Category <span
+                            class="text-danger">*</span></label>
+
+                    <mat-select 
+                        ngModel required name="sub_of_sub_category_id"
+
+                        #subCatOfSubCat placeholder='select Sub Cat of Sub Cat'>
+                        <!-- <div class="p-10 w-100">
+                            <input type="text" class="w-100 input-search">
+                        </div> -->
+
+                        <mat-option *ngFor="let subOfSub of subOfSubCategories" [value]="subOfSub.id">
+                            {{subOfSub.name}}
+                        </mat-option>
+                    </mat-select>
+                </div>
+            </div>
+        </div>
+    </mat-card>
+
+
+    <mat-card class="p-20 mb-30 mt-30">
+        <header class="d-flex justify-content-between mb-20">
+            <h2 class="title"> Product Images </h2>
+
+            <div>
+                <button (click)="add(8)" class="btn add-btn add-file-btn">
+                    <i class="fas fa-plus"></i>
+
+                    <input (change)="uploadImages($event)" type="file" multiple
+                        class="form-control custom-file-input add-file-input" id="thumbnail">
+                </button>
+            </div>
+        </header>
+
+        <div *ngIf="imagesUrls.length" class="wrapper row">
+            <div *ngFor="let image of imagesUrls; index as i" class="col-md-2 ph-10 mb-20">
+                <div class="slider-item d-flex">
+                    <div class="slider-wrapper brand-wrapper">
+                        <div class="img-wrapper" [style.background]="'url('+ image.url+')'"></div>
+                        <!-- <img class="main-img" src="assets/images/test.jpg" alt=""> -->
+
+                        <div class="controles d-none">
+                            <button (click)="delete(i)" class="btn trash-btn btn-danger">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <strong class="d-block text-center img-name">
+                    {{image.name}}
+                </strong>
+            </div>
+
+            <div class="w-100"></div>
+            <div class="w-100 btn-wrapper text-center">
+                <button (click)="clearProductsImages()" class="btn btn-primary">
+                    Clear All
+                </button>
+            </div>
+        </div>
+    </mat-card>
+
+
+    <mat-card class="p-20 mb-30 mt-30">
+        <header class="d-flex justify-content-between mb-20">
+            <h2 class="title"> Product Details </h2>
+        </header>
+
+        <div class="mb-20 form-group no-gutters">
+            <label class="d-block" for="description"> Product Description <span class="text-danger">*</span> </label>
+            <textarea
+                [ngClass]="{ 'is-invalid': description.invalid && description.touched, 'is-valid': !description.invalid && description.touched}"
+                placeholder="add product description" name="description" ngModel #description="ngModel" required
+                minlength="3" class="form-control" id="description"> </textarea>
+
+            <div *ngIf="!description.valid && description.touched">
+                <div class="alert alert-danger" *ngIf="description.errors.required"> <small> *Your description is
+                        required </small> </div>
+                <div class="alert alert-danger" *ngIf="description.errors.minlength"> <small> *Your description must be
+                        at least 3 characters </small> </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-6 mb-20 form-group no-gutters">
+                <label class="d-block" for="guarantee"> guarantee Years <span class="text-danger">*</span> </label>
+                <input
+                    [ngClass]="{ 'is-invalid': guarantee.invalid && guarantee.touched, 'is-valid': !guarantee.invalid && guarantee.touched}"
+                    placeholder="add product guarantee" type="number" name="guarantee" ngModel #guarantee="ngModel"
+                    required min="0" class="form-control" id="guarantee">
+
+                <div *ngIf="!guarantee.valid && guarantee.touched">
+                    <div class="alert alert-danger" *ngIf="guarantee.errors.required"> <small> *Your guarantee is
+                            required </small> </div>
+                    <div class="alert alert-danger" *ngIf="guarantee.errors.min"> <small> *Your guarantee must be
+                            positive number </small> </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 mb-20 form-group no-gutters">
+                <label class="d-block" for="counter"> counter <span class="text-danger">*</span> </label>
+                <input
+                    [ngClass]="{ 'is-invalid': counter.invalid && counter.touched, 'is-valid': !counter.invalid && counter.touched}"
+                    placeholder="add product counter" type="number" name="counter" ngModel #counter="ngModel" required
+                    min="0" class="form-control" id="counter">
+
+                <div *ngIf="!counter.valid && counter.touched">
+                    <div class="alert alert-danger" *ngIf="counter.errors.required"> <small> *Your counter is required
+                        </small> </div>
+                    <div class="alert alert-danger" *ngIf="counter.errors.min"> <small> *Your counter must be positive
+                            number </small> </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="row">
+            <div class="col-md-6 mb-20 form-group no-gutters">
+                <label class="d-block" for="price"> price <span class="text-danger">*</span> </label>
+                <input
+                    [ngClass]="{ 'is-invalid': price.invalid && price.touched, 'is-valid': !price.invalid && price.touched}"
+                    placeholder="add product price" type="number" name="price" ngModel #price="ngModel" required min="0"
+                    class="form-control" id="price">
+
+                <div *ngIf="!price.valid && price.touched">
+                    <div class="alert alert-danger" *ngIf="price.errors.required"> <small> *Your price is required
+                        </small> </div>
+                    <div class="alert alert-danger" *ngIf="price.errors.min"> <small> *Your price must be positive
+                            number </small> </div>
+                </div>
+            </div>
+
+            <div *ngIf="discount.checked" class="col-md-6 mb-20 form-group no-gutters">
+                <label class="d-block" for="sale"> sale <span class="text-warning">(optional)</span> </label>
+                <input
+                    [ngClass]="{ 'is-invalid': sale.invalid && sale.touched, 'is-valid': !sale.invalid && sale.touched}"
+                    placeholder="add product sale" type="number" name="sale" ngModel #sale="ngModel"  min="0"
+                    class="form-control" id="sale">
+            </div>
+        </div>
+
+
+        <section class="w-100">
+            <mat-checkbox #discount class="example-margin">Product Has Discount</mat-checkbox>
+        </section>
+
+        <section class="w-100">
+            <mat-checkbox ngModel #express name="express" class="example-margin">Express Product</mat-checkbox>
+        </section>
+    </mat-card>
+
+    <div class="text-center">
+        <button [disabled]="userForm.invalid || !imageFile.length" mat-raised-button color="accent">Add Product</button>
+    </div>
+</form>

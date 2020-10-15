@@ -6,6 +6,7 @@ app-sidebar{
     position: sticky;
 }
 
+
 .place-holder{
     // width: 15.5vw;
     transition: 1s all;
@@ -13,6 +14,9 @@ app-sidebar{
 }
 
 .main-content{
+    width: 84.5vw;
+    min-height: 100vh;
+    padding-bottom: 60px;
     nav{
         height: 70px;
     }

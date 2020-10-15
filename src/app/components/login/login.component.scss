@@ -1,0 +1,29 @@
+@import 'variables';
+
+.main-wrapper{
+    width: 100vw;
+    height: 100vh;
+    background-color: #F7FBFB;
+
+    mat-form-field{
+        width: 100%;
+        // margin-bottom: 30px;
+    }
+    form{
+        width: 90%;
+    }
+
+    .img-wrapper{
+        width: 90%;
+
+    }
+}
+
+  input.example-right-align::-webkit-outer-spin-button,
+  input.example-right-align::-webkit-inner-spin-button {
+    display: none;
+  }
+  
+  input.example-right-align {
+    -moz-appearance: textfield;
+  }

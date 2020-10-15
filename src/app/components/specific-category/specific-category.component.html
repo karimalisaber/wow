@@ -1,0 +1,228 @@
+<section class="main-shadow p-20 mb-30">
+    <header class="d-flex justify-content-between mb-20">
+        <h2 class="title"> Best Brands </h2>
+        
+        <div>
+            <button (click)="add(3)" class="btn add-btn">
+                <i class="fas fa-plus"></i>
+            </button>
+        </div>
+    </header>
+
+    <div class="wrapper row">
+        <div *ngFor="let brand of brands"  class="col-md-2 ph-10 mb-20">
+            <div class="slider-item d-flex">
+            <div class="slider-wrapper brand-wrapper">
+                <div class="img-wrapper" [style.background]="'url('+ brand.img+')'"></div>
+                <!-- <img class="main-img" src="assets/images/test.jpg" alt=""> -->
+                        
+                <div class="controles d-none">
+                    <button  class="btn btn-light">
+                        <i class="far fa-edit"></i>
+                    </button>
+                    
+                    <button (click) ="deleteAlert(brand.id, 3)"  class="btn trash-btn btn-danger">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <strong class="d-block text-center">
+            {{brand.name}}
+        </strong>
+    </div>
+    </div>
+</section>
+
+<!-- // sub Categories -->
+
+<section class="main-shadow p-20 mb-30">
+    <header class="d-flex justify-content-between mb-20">
+        <h2 class="title"> Sub Categories </h2>
+        
+        <div>
+            <button (click)="add(4)" class="btn add-btn">
+                <i class="fas fa-plus"></i>
+            </button>
+        </div>
+    </header>
+
+    <div class="wrapper row">
+        <div *ngFor="let cat of subCategories"  class="col-md-2 ph-10 mb-20">
+            <div class="slider-item d-flex">
+            <div class="slider-wrapper brand-wrapper">
+                <div class="img-wrapper" [style.background]="'url('+ cat.img+')'"></div>
+                <!-- <img class="main-img" src="assets/images/test.jpg" alt=""> -->
+                        
+                <div class="controles d-none">
+                    <button  class="btn btn-light">
+                        <i class="far fa-edit"></i>
+                    </button>
+                    
+                    <button (click) ="deleteAlert(cat.id, 4)" class="btn trash-btn btn-danger">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <strong class="d-block text-center">
+            {{cat.name}}
+        </strong>
+    </div>
+    </div>
+</section>
+
+
+
+
+<div class="row no-gutters set-height">
+    <div class="col-md-8 pl-40">
+        <section class="main-shadow p-20 mb-30">
+            <header class="d-flex justify-content-between mb-20">
+                <h4 class="title"> Sub Of Sub Categories </h4>
+                
+                <div>
+                    <button (click)="add(5)" class="btn add-btn">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+            </header>
+
+                <!-- <label class="col-md-3" for="title"> Category <span class="text-danger">*</span> </label> -->
+    
+                <!-- [ngClass]="{ 'is-invalid': category_id.invalid && category_id.touched, 'is-valid': !category_id.invalid && category_id.touched}" -->
+                
+                <div class="p-0">
+                    <mat-select #selectedSubCatOfSubCat (selectionChange)="getSubCategoriesOfSubCategoriy($event.value)" placeholder="Select Sub Category" name="category_id" >
+
+                        <mat-option class="default text-info">
+                            Select Sub Category
+                        </mat-option>
+
+                        
+                        <mat-option *ngFor="let cat of subCategories"  [value]  = 'cat.id'>
+                            {{cat.name}}
+                        </mat-option>
+            
+                    </mat-select>
+                </div>
+
+                <div *ngIf="subCategoriesOfSubCategory.length ===0" class="no-resul mt-20">
+                    <div *ngIf="!selectedSubCatOfSubCat.value" class="alert alert-warning text-center">
+                        <span>
+                            choose Sub Category to Show Results
+                        </span>
+                    </div>
+
+                    <div class="alert alert-warning text-center">
+                        <span>
+                            thier is no sub Categories for this section, you can Add one
+                        </span>
+                    </div>
+                </div>
+                
+                
+                <div *ngIf="subCategoriesOfSubCategory.length > 0" class="no-resul mt-20">
+                    <div class="wrapper row">
+                        <div *ngFor="let subCatOfSubCat of subCategoriesOfSubCategory"  class="col-md-3 ph-10 mb-20">
+                            <div class="slider-item d-flex">
+                            <div class="slider-wrapper brand-wrapper">
+                                <div class="img-wrapper" [style.background]="'url('+ subCatOfSubCat.img+')'"></div>
+                                <!-- <img class="main-img" src="assets/images/test.jpg" alt=""> -->
+                                        
+                                <div class="controles d-none">
+                                    <button  class="btn btn-light">
+                                        <i class="far fa-edit"></i>
+                                    </button>
+                                    
+                                    <button (click) ="deleteAlert(subCatOfSubCat.id, 5)" class="btn trash-btn btn-danger">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <strong class="d-block text-center">
+                            {{subCatOfSubCat.name}}
+                        </strong>
+                    </div>
+                    </div>
+                </div>
+
+                <!-- <div *ngIf="!category_id.valid && category_id.touched" class="col-md-9" >
+                    <div class="alert alert-danger" *ngIf="category_id.errors.required"> <small> *category is required </small> </div>
+                </div> -->
+        </section>    
+    </div>
+  
+  
+    <div class="col-md-4">
+        <section class="main-shadow p-20 mb-30">
+            <header class="d-flex justify-content-between mb-20">
+                <h4 class="title"> Special Images </h4>
+                
+                <div>
+                    <button (click)="add(6)" [disabled]="specialImages.length >= 2" class="btn add-btn">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+            </header>
+            
+            <div class="wrapper row">
+                <div *ngFor="let specialImage of specialImages"  class="col-md-6 ph-10 mb-20">
+                    <div class="slider-item d-flex">
+                    <div class="slider-wrapper">
+                        <div class="img-wrapper" [style.background]="'url('+ url + '/public/home_sliders/'+ specialImage?.imgae +')'"></div>
+                        <!-- <img class="main-img" src="assets/images/test.jpg" alt=""> -->
+                                
+                        <div class="controles d-none">
+                            <button (click) ="deleteAlert(specialImage.id,6)" class="btn trash-btn btn-danger">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                      
+                    </div>
+        
+                </div>
+              
+            </div>
+            </div>
+
+        </section>    
+    </div>
+  
+</div>
+
+
+<section class="main-shadow p-20 mb-30">
+    <header class="d-flex justify-content-between mb-20">
+        <h2 class="title"> الشرائح المتحركة </h2>
+        
+        <div>
+            <button (click)="add(7)" class="btn add-btn">
+                <i class="fas fa-plus"></i>
+            </button>
+        </div>
+    </header>
+
+    <div class="wrapper row">
+        <div *ngFor="let slider of sliders"  class="col-md-4 ph-10 mb-20">
+            <div class="slider-item d-flex">
+            <div class="slider-wrapper">
+                <div class="img-wrapper" [style.background]="'url('+ url + '/public/home_sliders/'+ slider.imgae +')'"></div>
+                <!-- <img class="main-img" src="assets/images/test.jpg" alt=""> -->
+                        
+                <div class="controles d-none">
+                    <button (click) ="deleteAlert(slider.id,7)" class="btn trash-btn btn-danger">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div>
+              
+            </div>
+
+        </div>
+        <a [href]="slider.link" target="_blank" class="d-block text-center external-link">
+            <b>{{slider.link}}</b>
+        </a>
+    </div>
+    </div>
+</section>

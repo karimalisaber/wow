@@ -97,7 +97,7 @@ hr{
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 20px;
+    // margin-bottom: 20px;
   
     &:hover{
         
@@ -214,4 +214,42 @@ hr{
 // background 
 .warning-background{
     background-color: $warningColor !important;
+}
+
+.external-link{
+    b{
+    color: #0f6674!important;
+
+    }
+}
+
+.brand-wrapper{
+    border: 1px solid #aaa;
+    box-shadow: 0 3px 6px rgba(0,0,0,.1)!important;
+
+    strong{
+        margin-top: 3px;
+    }
+}
+
+// body{
+//     height: 50000px;
+// }
+
+// mat-select{
+//     
+//     padding: 5px 10px;
+//     font-size: 1.3rem;
+//     font-weight: lighter;
+//     border-radius: 5px;
+//     color: gray !important;
+// }
+
+mat-select{
+    border: 1px solid $textColor;
+    padding: 5px 10px;
+    font-size: .8rem;
+    font-weight: lighter;
+    border-radius: 5px;
+    color: gray !important;
 }

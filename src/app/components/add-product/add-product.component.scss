@@ -1,0 +1,45 @@
+@import 'variables';
+mat-select{
+    padding: 5px 10px;
+    font-size: .8rem;
+    font-weight: lighter;
+    border-radius: 5px;
+    color: gray !important;
+}
+
+.input-search{
+    height: 35px;
+    border: 1px solid $lightBorder;
+    border-radius: 0;
+    padding: 3px;
+    // color: $textColor
+}
+
+.add-file-btn{
+    position: relative;
+    
+    .add-file-input{
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        &:hover{
+            cursor: pointer;
+        }
+    }
+    &:hover{
+        cursor: pointer;
+    }
+
+}
+
+.img-name{
+    overflow: hidden;
+    padding: 2px 10px;
+    line-break: anywhere;
+}
+
+textarea{
+    height: 180px;
+}

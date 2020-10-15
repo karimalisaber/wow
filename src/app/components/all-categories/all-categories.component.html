@@ -29,6 +29,8 @@
 </section>
 
 
+
+
 <section class="main-shadow p-20 mb-30">
     <header class="d-flex justify-content-between mb-20">
         <h2 class="title"> الشرائح المتحركة </h2>
@@ -48,12 +50,17 @@
                 <!-- <img class="main-img" src="assets/images/test.jpg" alt=""> -->
                         
                 <div class="controles d-none">
-                    <button class="btn trash-btn btn-danger">
+                    <button (click)="deleteAlert(slider.id , 'mainSlider')" class="btn trash-btn btn-danger">
                         <i class="fas fa-trash"></i>
                     </button>
                 </div>
+              
             </div>
+
         </div>
+        <a [href]="slider.link" target="_blank" class="d-block text-center external-link">
+            <b>{{slider.link}}</b>
+        </a>
     </div>
 
 

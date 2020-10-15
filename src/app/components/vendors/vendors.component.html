@@ -1,0 +1,71 @@
+<div class="feedback-wrapper">
+    <div class="row ">
+        <div *ngFor="let vendor of vendors" class="col-md-6 text-right">
+            <div class="card">
+                <mat-accordion>
+                    <mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                            <div class="card-header">
+                                <div class="row">
+                                    <h6 class="card-title col-md-6">{{vendor.vendor_data?.first_name}} {{vendor.vendor_data?.last_name}}</h6>
+                                    <h6 class="card-title col-md-6">{{vendor.company_name}}</h6>
+                                </div>
+
+                                <div class="row">
+                                    <span class="col-md-6 card-email">{{vendor.vendor_data?.email}}</span>
+                                    <span class="col-md  card-phone">{{vendor.phone}}</span>
+                                </div>
+                            </div>
+                        </mat-expansion-panel-header>
+
+                        <div class="card-body">
+                            <div class="wrapper row">
+                                <div class="col-md-6 ph-10 mb-20">
+                                    <div class="slider-item d-flex justify-content-between">
+                                        <div class="slider-wrapper brand-wrapper hover">
+                                            <!-- <div class="img-wrapper " [style.background]="'url('+ 'https://'+  vendor.id_attch+ ')'"></div> -->
+                                            <img class="main-img" [src]="'https://'+  vendor.id_attch" alt="">
+
+                                            <div class="controles d-none">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <strong class="d-block text-center">
+                                        Identity
+                                    </strong>
+                                </div>
+
+
+                                <div class="col-md-6 ph-10 mb-20">
+                                    <div class="slider-item d-flex justify-content-between">
+                                        <div class="slider-wrapper brand-wrapper hover">
+                                            <!-- <div class="img-wrapper " [style.background]="'url(' + 'https://'+ vendor.company_attch + ')'"></div> -->
+                                            <img class="main-img" [src]="'https://'+ vendor.company_attch " alt="">
+
+                                            <div class="controles d-none">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <strong class="d-block text-center">
+                                       Company File
+                                    </strong>
+                                </div>
+
+                            </div>
+
+                            <!-- <hr class="big-seperator"> -->
+
+                            <div>
+                                <button (click)="changeStatus(1, vendor.user_id, 'vendor Accepted')" class="btn btn-primary ml-10">قبول</button>
+                                <button (click)="changeStatus(0, vendor.user_id, 'vendor Refused')" class="btn btn-danger">رفض</button>
+                            </div>
+                        </div>
+
+                    </mat-expansion-panel>
+                </mat-accordion>
+            </div>
+        </div>
+    </div>
+</div>

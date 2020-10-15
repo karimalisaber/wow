@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { AddDialogComponent } from './../dialogs/add-dialog/add-dialog.component';
 import { ApiGetService } from './../../services/api-get.service';
@@ -14,18 +14,29 @@ export class AllCategoriesComponent implements OnInit {
 categories = [];
 sliders = [];
 url = 'http://wow.ieeeshasb.org/';
+
 constructor(
     private dialog: MatDialog, 
     private apiGet: ApiGetService, 
-    private dialogRef: MatDialogRef<AddDialogComponent>,
     private assets: AssetsService,
     private apiDelete: ApiDeleteService
     ) { }
 
+
+   makeid(length) {
+      var result           = '';
+      var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+      var charactersLength = characters.length;
+      for ( var i = 0; i < length; i++ ) {
+         result += characters.charAt(Math.floor(Math.random() * charactersLength));
+      }
+      return result;
+   }
+   
+
   ngOnInit(): void {
     this.getAllMainCategories();
     this.getAllSliders();
-
   }
 
   addMainSlider(){
@@ -33,10 +44,10 @@ constructor(
       data: {type: 2},
       panelClass: 'edit-dialog-container',
       width: '30%'
-    }).componentInstance.addMainCatSuccess.subscribe(res=>{
-      if(res)
-      this.getAllSliders();
-      
+    }).componentInstance.addSuccess.subscribe(res=>{
+      if(res){
+        this.getAllSliders();
+      }
     })
   }
 
@@ -45,7 +56,7 @@ constructor(
       data: {type: 1, id},
       panelClass: 'edit-dialog-container',
       width: '30%'
-    }).componentInstance.addMainCatSuccess.subscribe(res=>{
+    }).componentInstance.addSuccess.subscribe(res=>{
       if(res)
       this.getAllMainCategories();
       
@@ -71,6 +82,9 @@ constructor(
       switch(type){
         case 'mainCategory': 
           this.deleteMainCategory(id); break;
+
+        case 'mainSlider': 
+          this.deleteMainSlider(id); break;  
       }
     })
   }
@@ -88,5 +102,23 @@ constructor(
   }
 
   
+  private deleteMainSlider(id){
+    let index = this.sliders.findIndex(res=>res.id ===id);
+    let item = index? this.sliders[index]: {};
+    this.sliders.splice(index, 1);
+    this.apiDelete.deleteMainSlider(id).subscribe(res=>{
+      this.assets.actionMessage('Delete main Slider Success');
+    },error=>{
+      this.sliders.splice(index, 0, item);
+      // error Message
+    })
+  }
+  
+  @HostListener('window:scroll', ['$event']) 
+    dotheJob(event) {
+      console.debug("Scroll Event", window.pageYOffset );
+  }
 
+
+  
 }

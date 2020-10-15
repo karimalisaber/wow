@@ -19,4 +19,10 @@ export class DashboardComponent implements OnInit {
   this.expandNav = !this.expandNav;  
   }
 
+  
+  logOut(){
+    localStorage.clear();
+    location.reload();
+  }
+
 }

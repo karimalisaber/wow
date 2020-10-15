@@ -1,13 +1,35 @@
 <form #userForm="ngForm" (ngSubmit)="takeAction(userForm.value)" >
     <h3 class="title">
-        {{title}}
+        {{UIElements.title}}
     </h3>
     <hr>
 
-    <div class="form-group">
-        <label class="main-label" for="name">Name <span class="text-danger">*</span> </label>
+    <div *ngIf="type === 5" class="pb-20">
+        <mat-select ngModel required #subCatSelector name ="subCat" (selectionChange)="subCategoryId = subCatSelector.value">
+            <mat-option class="default text-info">
+                Select Sub Category
+            </mat-option>
+
+          
+            <mat-option *ngFor="let subCat of subCategories"  [value]  = 'subCat.id'>
+                {{subCat.name}}
+            </mat-option>
+
+        </mat-select>
+    </div>
+
+
+    <div *ngIf="type !==2 && type !==7 && type !==6" class="form-group">
+        <label class="main-label" for="name"> {{UIElements.name}} <span class="text-danger">*</span> </label>
         <input required name="name" class="form-control" id="name" placeholder="Name" 
         [(ngModel)]="form.name"
+        >
+    </div>
+
+    <div *ngIf="type ===2 || type ===7" class="form-group">
+        <label class="main-label" for="Url"> Url  <span class="text-danger">*</span> </label>
+        <input required name="link" class="form-control" id="Url" placeholder="Url" 
+        [(ngModel)]="form.link"
         >
     </div>
 
@@ -24,7 +46,7 @@
         
         <div class="custom-file mb-10">
             <input (change)="imgUpload($event.target)"  ngModel  type="file" name="image" class="form-control custom-file-input" id="thumbnail" >
-            <label class="custom-file-label"  for="thumbnail">{{imgName}}</label>
+            <label class="custom-file-label"  for="thumbnail">{{UIElements.imgName}}</label>
         </div>
     </div>
 

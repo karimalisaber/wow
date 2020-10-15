@@ -1,1 +1,10 @@
-<router-outlet></router-outlet>
+ <div [ngClass]="{'disable-pointer': assets.loading$ | async}" class="main-item">
+    <router-outlet></router-outlet>
+</div>
+
+    
+<div *ngIf="assets.loading$ | async" class="row">
+    <div class="spinner-border" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+</div>

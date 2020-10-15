@@ -1,0 +1,68 @@
+<div class="row">
+    <div *ngFor="let item of items" class="col-md-6 ph-20 pv-10">
+
+        <mat-card class="mb-30 p-10">
+            <table class="table table-dark table-bordered">
+                <tbody>
+                    <tr>
+                        <th scope="row">Name</th>
+                        <td>{{item.name}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Description</th>
+                        <td>{{item.description}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Price</th>
+                        <td>{{item.price}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Sale</th>
+                        <td *ngIf="item.sale">{{item.sale}}</td>
+                        <td *ngIf="!item.sale"><i class="text-danger fas fa-times"></i></td>
+                    </tr>
+
+                    <tr>
+                        <th scope="row">Counter</th>
+                        <td>{{item.counter}}</td>
+                    </tr>
+
+                    <tr>
+                        <th scope="row">Guarantee</th>
+                        <td>{{item.guarantee}} Year</td>
+                    </tr>
+
+
+                    <tr>
+                        <th scope="row">Express</th>
+                        <td *ngIf="item.express" class=""><i class="text-warning fas fa-check"></i></td>
+                        <td *ngIf="!item.express"><i class="text-danger fas fa-times"></i></td>
+                    </tr>
+
+                    <!-- item_images -->
+                </tbody>
+            </table>
+            <div *ngIf="item.item_images" class="images row">
+                <div *ngFor="let img of item.item_images" class="col-md-4 ph-10 mb-20">
+                    <div class="slider-item d-flex justify-content-between">
+                        <div class="slider-wrapper brand-wrapper hover">
+                            <!-- <div class="img-wrapper " [style.background]="'url(' + 'https://'+ vendor.company_attch + ')'"></div> -->
+                            <img class="main-img" [src]="'https://wow.ieeeshasb.org/public/items/'+ img.name " alt="">
+
+                            <div class="controles d-none">
+
+                            </div>
+                        </div>
+                    </div>
+                    <strong class="d-block text-center">
+                       Company File
+                    </strong>
+                </div>
+            </div>
+            <div class="mv-10">
+                <button (click)="changeStatus(1, item.id, 'vendor Accepted')" class="btn btn-primary ml-10">قبول</button>
+                <button (click)="changeStatus(0, item.id, 'vendor Refused')" class="btn btn-danger">رفض</button>
+            </div>
+        </mat-card>
+    </div>
+</div>

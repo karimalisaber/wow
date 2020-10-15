@@ -1,0 +1,61 @@
+<section class="main-wrapper main-background d-flex align-items-center justify-content-center">
+    <div class="row">
+        <div class="col-md-6 d-flex justify-content-end">
+            <form #userForm="ngForm" (ngSubmit)="adminLogin(userForm.value)">
+                <mat-card class="pb-30">
+                    <h4 class="title mb-20">Login </h4>
+              
+                    <mat-form-field appearance="legacy" class="mb-30">
+                        <mat-label>Email</mat-label>
+                        <input type="email" ngModel #email="ngModel" email name="email"  required matInput placeholder="Enter Your Email">
+                        <!-- <mat-hint>Hint</mat-hint> -->
+                        <mat-error >
+                            <span *ngIf="!email.value">
+                                Enter Your Email
+                            </span>
+                            <span *ngIf="email.value">
+                                Please enter a vaild Email
+                            </span>
+                        </mat-error>
+
+                    </mat-form-field>
+    
+                    <div class="password mb-30">
+                        <mat-form-field appearance="fill">
+                            <mat-label >Enter your password</mat-label>
+                            <input  required matInput [type]="hide ? 'password' : 'text'" ngModel #password = "ngModel" name="password" minlength="8">
+                            <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                            </button>
+                            <mat-error>
+                                <span *ngIf="!password.value">
+                                    Enter Your Password
+                                </span>
+                                <span *ngIf="password.value">
+                                    minumum Password Length is 8 characters
+                                </span>
+                            </mat-error>
+                        </mat-form-field>
+<!--     
+                        <div class="w-100">
+                            <small class="text-danger ">
+                                Email and Password didn't match
+                            </small>
+                        </div> -->
+    
+                    </div>
+                   
+                      <button *ngIf="!isLoading" [disabled]="userForm.invalid" mat-raised-button color="primary">Login</button>
+                      <button type="button" *ngIf="isLoading"  mat-raised-button color="accent">Loading...</button>
+
+                </mat-card>
+            </form>
+        </div>
+
+        <div class="col-md-6 d-flex justify-content-start" >
+            <div class="img-wrapper">
+                <img class="img-fluid" src="assets/login.svg" alt="">
+            </div>
+        </div>
+    </div>
+</section>

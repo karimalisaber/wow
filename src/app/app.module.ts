@@ -13,6 +13,15 @@ import { AllCategoriesComponent } from './components/all-categories/all-categori
 import { AddDialogComponent } from './components/dialogs/add-dialog/add-dialog.component';
 import { MessagesComponent } from './components/messages/messages.component';
 import { DeleteDialogComponent } from './components/dialogs/delete-dialog/delete-dialog.component';
+import { SpecificCategoryComponent } from './components/specific-category/specific-category.component';
+import { VendorsComponent } from './components/vendors/vendors.component';
+import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+import { HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { LoginComponent } from './components/login/login.component';
+import { AddProductComponent } from './components/add-product/add-product.component';
+import { ReviewProductComponent } from './components/review-product/review-product.component';
+import { ResizableModule } from 'angular-resizable-element';
+import { HttpInterceptorService } from './services/http-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -24,20 +33,28 @@ import { DeleteDialogComponent } from './components/dialogs/delete-dialog/delete
     AllCategoriesComponent,
     AddDialogComponent,
     MessagesComponent,
-    DeleteDialogComponent
+    DeleteDialogComponent,
+    SpecificCategoryComponent,
+    VendorsComponent,
+    LoginComponent,
+    AddProductComponent,
+    ReviewProductComponent
   ],
   entryComponents:[
     AddDialogComponent,
     MessagesComponent,
-    DeleteDialogComponent
+    DeleteDialogComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule,
+    ResizableModule,
     SharedModule
   ],
-  providers: [],
+  providers: [
+    HttpClient, {provide: LocationStrategy, useClass: HashLocationStrategy},
+    {provide: HTTP_INTERCEPTORS, useClass: HttpInterceptorService , multi: true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

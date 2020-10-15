@@ -4,13 +4,16 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MessagesComponent } from './../components/messages/messages.component';
 import { DeleteDialogComponent } from './../components/dialogs/delete-dialog/delete-dialog.component';
 import { map, take } from 'rxjs/operators';
+import { BehaviorSubject, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AssetsService {
-
-  constructor(private snack: MatSnackBar, private dialog: MatDialog) { }
+  loading$ = new  BehaviorSubject(false);
+  
+  constructor(private snack: MatSnackBar, private dialog: MatDialog) { 
+  }
 
   actionMessage(message){
     return this.snack.openFromComponent(MessagesComponent, {duration: 2000, panelClass: 'background-none', horizontalPosition: 'left', verticalPosition: 'top', data: message});

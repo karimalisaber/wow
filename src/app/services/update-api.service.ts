@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { updateMainCategoryUrl } from './../backend/api';
+import { updateMainCategoryUrl, updateVendorStatusUrl } from './../backend/api';
 
 @Injectable({
   providedIn: 'root'
@@ -13,5 +13,10 @@ lang = localStorage.getItem('lang') || '0';
     form.append('lang' , this.lang);
 
    return this.http.post(updateMainCategoryUrl + id , form) 
+  }
+
+  updateVendorStatus(form){
+   return this.http.post(updateVendorStatusUrl, form) 
+
   }
 }

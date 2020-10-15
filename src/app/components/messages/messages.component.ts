@@ -11,7 +11,6 @@ export class MessagesComponent implements OnInit {
   constructor(@Inject(MAT_SNACK_BAR_DATA) public data , public snackBarRef: MatSnackBarRef<MessagesComponent>) { }
 
   ngOnInit(): void {
-    console.log(this.data);
     
   }
 
