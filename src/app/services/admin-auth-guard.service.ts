@@ -1,41 +1,29 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRoute, Router, RouterStateSnapshot } from '@angular/router';
-import { JwtHelperService } from "@auth0/angular-jwt";
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuardService {
+export class AdminAuthGuardService {
 
-  
   constructor (private route: ActivatedRoute, private router: Router) { }
 
   canActivate(route, state: RouterStateSnapshot){
-    if (this.isLogin()) return true;
+    if (this.isAdmin()) return true;
 
      this.router.navigate([ 'login'], {queryParams: {returnUrl: state.url}});
     return false;
   }
 
-  
-  isLogin(){
-    const helper = new JwtHelperService();
+  isAdmin(){
     let user = localStorage.getItem('user')? JSON.parse(localStorage.getItem('user')) : null;
     if(!user) return false;
 
-    let token = user.token;
+    let role = +user.role;
   
-    if(!token)
-      return false ;
+    if(role === 1)
+      return true ;
 
-    const isExpired = helper.isTokenExpired(token);
-  
-    return !isExpired;
-  }
-
-  getToken(){
-    let user = localStorage.getItem('user')? JSON.parse(localStorage.getItem('user')) : null;
-    if(!user) return false;
-    return user.token    
+    return false
   }
 }

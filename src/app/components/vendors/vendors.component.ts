@@ -27,8 +27,7 @@ export class VendorsComponent implements OnInit {
   changeStatus(status, user_id, message){
     this.updateApi.updateVendorStatus({user_id, status}).subscribe(res=>{
       this.assets.actionMessage(message);
-      this.getVendorRequests();
-      
+      this.getVendorRequests();      
     })
   } 
 

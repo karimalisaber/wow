@@ -13,8 +13,8 @@
         <div *ngFor="let brand of brands"  class="col-md-2 ph-10 mb-20">
             <div class="slider-item d-flex">
             <div class="slider-wrapper brand-wrapper">
-                <div class="img-wrapper" [style.background]="'url('+ brand.img+')'"></div>
-                <!-- <img class="main-img" src="assets/images/test.jpg" alt=""> -->
+                <!-- <div class="img-wrapper" [style.background]="'url('+ brand.img+')'"></div> -->
+                <img class="main-img" [src]="'http://' + brand.img" alt="">
                         
                 <div class="controles d-none">
                     <button  class="btn btn-light">
@@ -51,8 +51,8 @@
         <div *ngFor="let cat of subCategories"  class="col-md-2 ph-10 mb-20">
             <div class="slider-item d-flex">
             <div class="slider-wrapper brand-wrapper">
-                <div class="img-wrapper" [style.background]="'url('+ cat.img+')'"></div>
-                <!-- <img class="main-img" src="assets/images/test.jpg" alt=""> -->
+                <!-- <div class="img-wrapper" [style.background]="'url('+ cat.img+')'"></div> -->
+                <img class="main-img" [src]="'http://' + cat.img" alt="">
                         
                 <div class="controles d-none">
                     <button  class="btn btn-light">
@@ -93,17 +93,13 @@
                 <!-- [ngClass]="{ 'is-invalid': category_id.invalid && category_id.touched, 'is-valid': !category_id.invalid && category_id.touched}" -->
                 
                 <div class="p-0">
-                    <mat-select #selectedSubCatOfSubCat (selectionChange)="getSubCategoriesOfSubCategoriy($event.value)" placeholder="Select Sub Category" name="category_id" >
+                    <label class="input-group" for="subCat">Chosse Sub Category </label>
 
-                        <mat-option class="default text-info">
-                            Select Sub Category
-                        </mat-option>
-
-                        
+                    <mat-select #selectedSubCatOfSubCat id="subCat" (selectionChange)="getSubCategoriesOfSubCategoriy($event.value)" placeholder="Select Sub Category" name="category_id" >
                         <mat-option *ngFor="let cat of subCategories"  [value]  = 'cat.id'>
                             {{cat.name}}
                         </mat-option>
-            
+        
                     </mat-select>
                 </div>
 
@@ -127,8 +123,8 @@
                         <div *ngFor="let subCatOfSubCat of subCategoriesOfSubCategory"  class="col-md-3 ph-10 mb-20">
                             <div class="slider-item d-flex">
                             <div class="slider-wrapper brand-wrapper">
-                                <div class="img-wrapper" [style.background]="'url('+ subCatOfSubCat.img+')'"></div>
-                                <!-- <img class="main-img" src="assets/images/test.jpg" alt=""> -->
+                                <!-- <div class="img-wrapper" [style.background]="'url('+ subCatOfSubCat.img+')'"></div> -->
+                                <img class="main-img" [src]="'http://' + subCatOfSubCat.img" alt="">
                                         
                                 <div class="controles d-none">
                                     <button  class="btn btn-light">
@@ -171,8 +167,8 @@
                 <div *ngFor="let specialImage of specialImages"  class="col-md-6 ph-10 mb-20">
                     <div class="slider-item d-flex">
                     <div class="slider-wrapper">
-                        <div class="img-wrapper" [style.background]="'url('+ url + '/public/home_sliders/'+ specialImage?.imgae +')'"></div>
-                        <!-- <img class="main-img" src="assets/images/test.jpg" alt=""> -->
+                        <!-- <div class="img-wrapper" [style.background]="'url('+ url + '/public/home_sliders/'+ specialImage?.imgae +')'"></div> -->
+                        <img class="main-img" [src]="'http://' + specialImage?.img " alt="">
                                 
                         <div class="controles d-none">
                             <button (click) ="deleteAlert(specialImage.id,6)" class="btn trash-btn btn-danger">
@@ -208,8 +204,8 @@
         <div *ngFor="let slider of sliders"  class="col-md-4 ph-10 mb-20">
             <div class="slider-item d-flex">
             <div class="slider-wrapper">
-                <div class="img-wrapper" [style.background]="'url('+ url + '/public/home_sliders/'+ slider.imgae +')'"></div>
-                <!-- <img class="main-img" src="assets/images/test.jpg" alt=""> -->
+                <!-- <div class="img-wrapper" [style.background]="'url('+ url + '/public/home_sliders/'+ slider.imgae +')'"></div> -->
+                <img class="main-img" [src]="'http://' + slider.img" alt="">
                         
                 <div class="controles d-none">
                     <button (click) ="deleteAlert(slider.id,7)" class="btn trash-btn btn-danger">

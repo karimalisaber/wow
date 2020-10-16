@@ -67,5 +67,12 @@
                 </mat-accordion>
             </div>
         </div>
+
+        
+        <div *ngIf="!vendors.length" class="alert alert-warning text-center mt-80 w-100">
+            <span>
+                No New Venodors
+            </span>
+        </div>
     </div>
 </div>

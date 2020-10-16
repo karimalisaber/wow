@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
-import { getBestBrandsUrl, getCategorySlidersUrl, getCategorySpecialImagesUrl, getMainCategoryNamesUrl, getSubCategoriesOfSubCategoryUrl, getSubCategoriesUrl, getvendorRequestsUrl } from '../backend/api';
+import { getBestBrandsUrl, getCategorySlidersUrl, getCategorySpecialImagesUrl, GetItemsUrl, getMainCategoryNamesUrl, getSubCategoriesOfSubCategoryUrl, getSubCategoriesUrl, getvendorRequestsUrl } from '../backend/api';
 import { getAllHomeSlidersUrl, getSpecialCategoryUrl, GetVendorsItemsUrl } from './../backend/api';
 
 @Injectable({
@@ -54,6 +54,10 @@ export class ApiGetService {
   // items
   getVendorsItems(){
     return this.http.get(GetVendorsItemsUrl).pipe(map((res:any)=>res.data));
+  }
+
+  getItems(){
+    return this.http.get(GetItemsUrl).pipe(map((res:any)=>res.data));
   }
 
 }

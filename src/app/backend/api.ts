@@ -47,6 +47,8 @@ export const deleteCatSpecialImageUrl = url + dashboard + 'delete_home_slider/'
 // update 
 export const updateMainCategoryUrl = url + dashboard + 'update_category/'
 export const updateVendorStatusUrl = url + dashboard + 'vendor/update_status'
+export const updateItemStatusUrl = url + dashboard + 'item/update_status'
+export const updateItemStatusForVendorUrl = url  + 'api/vendor/update_item_status'
 
 
 // auth 
@@ -57,3 +59,4 @@ export const adminLoginUrl = url + auth + 'admin_login'
 export const addItemUrl = url + vendor + 'add_item'
 
 export const GetVendorsItemsUrl = url + dashboard + 'vendors/items/' + lang
+export const GetItemsUrl = url  + 'api/vendor/all_items/' + lang

@@ -46,8 +46,8 @@
         <div *ngFor="let slider of sliders"  class="col-md-4 ph-10 mb-20">
             <div class="slider-item d-flex">
             <div class="slider-wrapper">
-                <div class="img-wrapper" [style.background]="'url('+ url + '/public/home_sliders/'+ slider.imgae +')'"></div>
-                <!-- <img class="main-img" src="assets/images/test.jpg" alt=""> -->
+                <!-- <div class="img-wrapper" [style.background]="'url('+ url + '/public/home_sliders/'+ slider.imgae +')'"></div> -->
+                <img class="main-img" src="assets/images/test.jpg" alt="">
                         
                 <div class="controles d-none">
                     <button (click)="deleteAlert(slider.id , 'mainSlider')" class="btn trash-btn btn-danger">

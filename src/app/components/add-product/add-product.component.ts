@@ -16,6 +16,7 @@ subOfSubCategories;
 selectedCatId;
 selectedSubCatId;
 selectedSubOfSubCatId;
+brands = [];
 
 isLoading: boolean = false;
 
@@ -63,6 +64,13 @@ backEndForm= new FormData();
     this.subCategories = []; // for clean up categories
     this.selectedCatId = id;
     this.getSubCategories();
+    this.getCategoryBrands();
+  }
+
+  private getCategoryBrands(){
+    this.apiget.getBestBrands(this.selectedCatId).subscribe(res=>{
+      this.brands = res;
+    })
   }
 
   changeSubCategory(id){
@@ -103,8 +111,8 @@ backEndForm= new FormData();
 
   addProduct(form){
     if(this.isLoading) return;
+    
     this.isLoading = true;
-    this.clearProductsImages()
     this.assets.loading$.next(true)
 
 
@@ -118,6 +126,8 @@ backEndForm= new FormData();
       this.backEndForm.append('images[]', res)
     })
 
+    this.clearProductsImages();
+
     // map express
     this.apiPost.addItem(this.backEndForm).subscribe(res=>{
       this.isLoading = false;
@@ -128,7 +138,6 @@ backEndForm= new FormData();
       this.isLoading = false;
       this.assets.actionMessage('error, try again');
       this.assets.loading$.next(false)
-
     })
   }
 }

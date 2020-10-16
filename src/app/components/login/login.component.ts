@@ -15,6 +15,7 @@ export class LoginComponent implements OnInit {
 hide: boolean = true;
 dontMatchErr :boolean = false;
 isLoading: boolean = false;
+isVendor: boolean = false;
 
 colorControl = new FormControl('primary');
   constructor(private api: ApiService, private router : Router, private dialog: MatDialog, private assets: AssetsService) { }
@@ -29,7 +30,13 @@ colorControl = new FormControl('primary');
     this.api.adminLogin(form).subscribe((res:any)=>{
       localStorage.setItem('user', JSON.stringify(res.data));
       this.assets.actionMessage('login successfully')
-      this.router.navigate([''])
+      this.isVendor = res.data.role == 3 ? true : false;
+      debugger
+      if(this.isVendor)
+        this.router.navigate(['/home'])
+      else 
+        this.router.navigate([''])
+
     },err=>{
       if(err.status===401){
         this.dontMatchErr = true;

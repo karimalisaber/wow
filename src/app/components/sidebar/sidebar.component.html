@@ -5,7 +5,7 @@
     </div>
     <hr>
     <ul class="sidebar-content ph-20">
-      <li style="display: flex !important" class="control-item">
+      <li style="display: flex !important" class="control-item" *ngIf="isAdmin">
 
         <mat-expansion-panel class="w-100 d-inline-block">
           <mat-expansion-panel-header class="p-0" style="height: auto !important;">
@@ -41,7 +41,7 @@
         </mat-expansion-panel>
       </li>
 
-      <li class="control-item">
+      <li class="control-item" *ngIf="isAdmin">
         <a routerLink="/vendors" routerLinkActive="active" class="d-flex btn w-100 align-items-center">
           <i class="fas fa-home"></i>
 
@@ -49,22 +49,30 @@
         </a>
       </li>
 
-      <li class="control-item">
-        <a routerLink="/add-product" routerLinkActive="active" class="d-flex btn w-100 align-items-center">
+      <li class="control-item" *ngIf="isVendor">
+        <a routerLink="/home/add-product" routerLinkActive="active" class="d-flex btn w-100 align-items-center">
           <i class="fas fa-home"></i>
 
           <span class="mh-10">add Product</span>
         </a>
       </li>
 
-      <li class="control-item">
-        <a routerLink="/review-product" routerLinkActive="active" class="d-flex btn w-100 align-items-center">
+      <li class="control-item" *ngIf="isAdmin">
+        <a routerLink="/review-products" routerLinkActive="active" class="d-flex btn w-100 align-items-center">
           <i class="fas fa-home"></i>
 
           <span class="mh-10">Review Products</span>
         </a>
       </li>
 
+      
+      <li class="control-item" *ngIf="isVendor">
+        <a routerLink="/home/view-products" routerLinkActive="active" class="d-flex btn w-100 align-items-center">
+          <i class="fas fa-home"></i>
+
+          <span class="mh-10">View Products</span>
+        </a>
+      </li>
     </ul>
   </mat-sidenav>
 

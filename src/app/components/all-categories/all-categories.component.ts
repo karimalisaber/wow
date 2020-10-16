@@ -4,6 +4,7 @@ import { AddDialogComponent } from './../dialogs/add-dialog/add-dialog.component
 import { ApiGetService } from './../../services/api-get.service';
 import { AssetsService } from './../../services/assets.service';
 import { ApiDeleteService } from './../../services/api-delete.service';
+import { ObservablesService } from './../../services/observables.service';
 
 @Component({
   selector: 'app-all-categories',
@@ -19,7 +20,8 @@ constructor(
     private dialog: MatDialog, 
     private apiGet: ApiGetService, 
     private assets: AssetsService,
-    private apiDelete: ApiDeleteService
+    private apiDelete: ApiDeleteService,
+    private observe : ObservablesService
     ) { }
 
 
@@ -59,7 +61,7 @@ constructor(
     }).componentInstance.addSuccess.subscribe(res=>{
       if(res)
       this.getAllMainCategories();
-      
+      this.observe.newCategoryAdded$.next(true)
     })
   }
 
@@ -97,7 +99,6 @@ constructor(
       this.assets.actionMessage('Delete Mani Category Success');
     },error=>{
       this.categories.splice(index, 0, item);
-      // error Message
     })
   }
 

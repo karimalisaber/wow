@@ -22,6 +22,7 @@ import { AddProductComponent } from './components/add-product/add-product.compon
 import { ReviewProductComponent } from './components/review-product/review-product.component';
 import { ResizableModule } from 'angular-resizable-element';
 import { HttpInterceptorService } from './services/http-interceptor.service';
+import { ViewProductComponent } from './components/view-product/view-product.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { HttpInterceptorService } from './services/http-interceptor.service';
     VendorsComponent,
     LoginComponent,
     AddProductComponent,
-    ReviewProductComponent
+    ReviewProductComponent,
+    ViewProductComponent
   ],
   entryComponents:[
     AddDialogComponent,

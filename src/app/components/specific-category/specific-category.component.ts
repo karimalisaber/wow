@@ -79,9 +79,7 @@ isLoading = false;
     })
   }
 
-  private getCatSpecialImages(){
-    console.log('here again ', this.catId);
-    
+  private getCatSpecialImages(){    
     this.apiget.getCatSpecialImages(this.catId).subscribe(res=>{
       this.specialImages = res;
     })

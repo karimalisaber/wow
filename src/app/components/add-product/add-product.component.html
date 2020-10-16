@@ -2,16 +2,6 @@
     <mat-card>
         <div class="filter-section">
             <div class="row mb-50">
-                <div class="input-group  col-md-3">
-                    <label class="input-group" for="inputGroupSelect01">Name <span class="text-danger">*</span></label>
-
-                    <input 
-                         [ngClass]="{ 'is-invalid': name.invalid && name.touched, 'is-valid': !name.invalid && name.touched}"
-                            #name="ngModel"
-                         required name="name" ngModel  class="form-control" id="name" placeholder="Name">
-                </div>
-
-
                 <div class="input-group col-md-3">
                     <label class="input-group" for="inputGroupSelect01">Categories <span
                             class="text-danger">*</span></label>
@@ -20,23 +10,33 @@
                         (selectionChange)="changeCategory(catSelect.value)"
                         >
 
-                        <!-- <div class="p-10 w-100">
-                            <input type="search" class="w-100 input-search">
-                        </div>
-                       -->
                         <mat-option [value]="cat.id" *ngFor="let cat of categories">
                             {{cat.name}}
                         </mat-option>
                     </mat-select>
                 </div>
 
+                <div class="input-group col-md-3">
+                    <label class="input-group" for="brand">Brand <span
+                            class="text-danger">*</span></label>
+
+                    <mat-select #brand placeholder='select Brand' id="brand"
+                        required ngModel name="brand_id"
+                    >
+
+                        <mat-option [value]="brand.id" *ngFor="let brand of brands">
+                            {{brand.name}}
+                        </mat-option>
+                    </mat-select>
+                </div>
+
                 <div class="input-group  col-md-3">
-                    <label class="input-group" for="inputGroupSelect01">Sub Category <span
+                    <label class="input-group" for="subCat">Sub Category <span
                             class="text-danger">*</span></label>
 
                     <mat-select #subCatSelect (selectionChange)="changeSubCategory(subCatSelect.value)"
                         placeholder='select Sub Cat'
-                        ngModel required name="sub_category_id"
+                        ngModel required name="sub_category_id" id="subCat"
                         >
 
                         <!-- <div class="p-10 w-100">
@@ -50,10 +50,11 @@
                 </div>
 
                 <div class="input-group  col-md-3">
-                    <label class="input-group" for="inputGroupSelect01">Sub Category Of Sub Category <span
-                            class="text-danger">*</span></label>
+                    <label class="input-group" for="subCatOfSub">Sub Category Of Sub Category <span
+                            class="text-danger">*</span>
+                    </label>
 
-                    <mat-select 
+                    <mat-select id="subCatOfSub"
                         ngModel required name="sub_of_sub_category_id"
 
                         #subCatOfSubCat placeholder='select Sub Cat of Sub Cat'>
@@ -118,6 +119,15 @@
         <header class="d-flex justify-content-between mb-20">
             <h2 class="title"> Product Details </h2>
         </header>
+
+        <div class="input-group mb-20">
+            <label class="input-group" for="name">Name <span class="text-danger">*</span></label>
+
+            <input 
+                 [ngClass]="{ 'is-invalid': name.invalid && name.touched, 'is-valid': !name.invalid && name.touched}"
+                    #name="ngModel"
+                 required name="name" ngModel  class="form-control" id="name" placeholder="Name">
+        </div>
 
         <div class="mb-20 form-group no-gutters">
             <label class="d-block" for="description"> Product Description <span class="text-danger">*</span> </label>
@@ -188,7 +198,6 @@
             <div *ngIf="discount.checked" class="col-md-6 mb-20 form-group no-gutters">
                 <label class="d-block" for="sale"> sale <span class="text-warning">(optional)</span> </label>
                 <input
-                    [ngClass]="{ 'is-invalid': sale.invalid && sale.touched, 'is-valid': !sale.invalid && sale.touched}"
                     placeholder="add product sale" type="number" name="sale" ngModel #sale="ngModel"  min="0"
                     class="form-control" id="sale">
             </div>

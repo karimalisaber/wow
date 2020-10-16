@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiGetService } from './../../services/api-get.service';
+import { UpdateApiService } from './../../services/update-api.service';
+import { AssetsService } from './../../services/assets.service';
 
 @Component({
   selector: 'app-review-product',
@@ -8,7 +10,8 @@ import { ApiGetService } from './../../services/api-get.service';
 })
 export class ReviewProductComponent implements OnInit {
 items = [];
-  constructor(private apiGet: ApiGetService) { }
+
+  constructor(private apiGet: ApiGetService, private apiUpdate: UpdateApiService, private assets: AssetsService) { }
 
   ngOnInit(): void {
     this.getItems();
@@ -16,11 +19,15 @@ items = [];
 
   private getItems(){
     this.apiGet.getVendorsItems().subscribe(res=>{
-      this.items = res;
+      this.items = res;    
     })
   }
 
-  changeStatus(status, id , message){
-
+  
+  changeStatus(status, item_id, message){
+    this.apiUpdate.updateItemStatus({status, item_id}).subscribe(res=>{
+      this.assets.actionMessage(message);
+      this.getItems();
+    })
   }
 }
