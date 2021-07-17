@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {addBestBrandUrl, addCategorySliderUrl, addCategorySpecialImageUrl, addItemUrl, addMainCategoryUrl, addMainSliderUrl, addSubCategoryOfSubCategory, addSubCategoryUrl, getSpecificMainCategoryNamesUrl} from 'src/app/backend/api';
 import { map } from 'rxjs/operators';
 import { adminLoginUrl } from './../backend/api';
@@ -65,7 +65,10 @@ lang = "0";
     }
 
   getSpecificMainCategory(id){
-    return this.http.get(getSpecificMainCategoryNamesUrl +id).pipe(map((res:any)=>res.data))
+    let httpHeader: HttpHeaders = new HttpHeaders({
+
+    })
+    return this.http.get(getSpecificMainCategoryNamesUrl +id , {headers: httpHeader} ).pipe(map((res:any)=>res.data))
   }
 
 }

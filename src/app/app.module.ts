@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
+import { AppComponent, InnerTestDirective } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
@@ -23,6 +23,9 @@ import { ReviewProductComponent } from './components/review-product/review-produ
 import { ResizableModule } from 'angular-resizable-element';
 import { HttpInterceptorService } from './services/http-interceptor.service';
 import { ViewProductComponent } from './components/view-product/view-product.component';
+import { StateComponent } from './state/state.component';
+import { TestDirective } from './directives/test.directive';
+import { FirstPipePipe } from './pipes/first-pipe.pipe';
 
 @NgModule({
   declarations: [
@@ -40,7 +43,11 @@ import { ViewProductComponent } from './components/view-product/view-product.com
     LoginComponent,
     AddProductComponent,
     ReviewProductComponent,
-    ViewProductComponent
+    ViewProductComponent,
+    StateComponent,
+    TestDirective,
+    InnerTestDirective,
+    FirstPipePipe
   ],
   entryComponents:[
     AddDialogComponent,
@@ -55,7 +62,7 @@ import { ViewProductComponent } from './components/view-product/view-product.com
   ],
   providers: [
     HttpClient, {provide: LocationStrategy, useClass: HashLocationStrategy},
-    {provide: HTTP_INTERCEPTORS, useClass: HttpInterceptorService , multi: true}
+    // {provide: HTTP_INTERCEPTORS, useClass: HttpInterceptorService , multi: true}
   ],
   bootstrap: [AppComponent]
 })

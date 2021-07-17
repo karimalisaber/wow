@@ -23,7 +23,6 @@ colorControl = new FormControl('primary');
   ngOnInit(): void {
   }
 
-  
   adminLogin(form){
     this.isLoading = true;
     this.dontMatchErr = false
@@ -31,7 +30,6 @@ colorControl = new FormControl('primary');
       localStorage.setItem('user', JSON.stringify(res.data));
       this.assets.actionMessage('login successfully')
       this.isVendor = res.data.role == 3 ? true : false;
-      debugger
       if(this.isVendor)
         this.router.navigate(['/home'])
       else 
@@ -46,7 +44,6 @@ colorControl = new FormControl('primary');
             message: "email and Password didn't match" 
           } 
         })
-        
       }
     })
   }

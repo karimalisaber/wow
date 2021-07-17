@@ -5,6 +5,7 @@ import { ApiGetService } from './../../services/api-get.service';
 import { AssetsService } from './../../services/assets.service';
 import { ApiDeleteService } from './../../services/api-delete.service';
 import { ObservablesService } from './../../services/observables.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-all-categories',
@@ -17,9 +18,10 @@ sliders = [];
 url = 'http://wow.ieeeshasb.org/';
 
 constructor(
-    private dialog: MatDialog, 
-    private apiGet: ApiGetService, 
+    private dialog: MatDialog,
+    private apiGet: ApiGetService,
     private assets: AssetsService,
+    private route: ActivatedRoute,
     private apiDelete: ApiDeleteService,
     private observe : ObservablesService
     ) { }
@@ -34,9 +36,12 @@ constructor(
       }
       return result;
    }
-   
+
 
   ngOnInit(): void {
+    let dataResolved  = this.route.snapshot.data['dataItems']
+    // console.log(dataResolved);
+
     this.getAllMainCategories();
     this.getAllSliders();
   }
@@ -67,13 +72,13 @@ constructor(
 
   private getAllMainCategories(){
     this.apiGet.getMainCategoriesNames().subscribe(res=>{
-      this.categories = res;      
+      this.categories = res;
     })
   }
 
   private getAllSliders(){
     this.apiGet.getAllHomeSliders().subscribe(res=>{
-      this.sliders = res;      
+      this.sliders = res;
     })
   }
 
@@ -82,11 +87,11 @@ constructor(
       if(!res) return;
 
       switch(type){
-        case 'mainCategory': 
+        case 'mainCategory':
           this.deleteMainCategory(id); break;
 
-        case 'mainSlider': 
-          this.deleteMainSlider(id); break;  
+        case 'mainSlider':
+          this.deleteMainSlider(id); break;
       }
     })
   }
@@ -102,7 +107,7 @@ constructor(
     })
   }
 
-  
+
   private deleteMainSlider(id){
     let index = this.sliders.findIndex(res=>res.id ===id);
     let item = index? this.sliders[index]: {};
@@ -114,12 +119,12 @@ constructor(
       // error Message
     })
   }
-  
-  @HostListener('window:scroll', ['$event']) 
+
+  @HostListener('window:scroll', ['$event'])
     dotheJob(event) {
       console.debug("Scroll Event", window.pageYOffset );
   }
 
 
-  
+
 }
